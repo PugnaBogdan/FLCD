@@ -1,18 +1,20 @@
 #Start#
 
-words a,b,c;
-letter d;
+words _a,_b,_c;
+letter _d;
+.a is "error"; // lexycal error
 
-read a;
+read _a;
 
-rea b; // lexycal error - rea 
+read b; // lexycal error
 
-read c;
+read _c;
 
-if ( a equals c)
+if ( _a equals _c)
 #
 	show "a ii egal cu b";
-	// lexycal error - if not closed
-show d plus d;
+#
+
+show _d plus _d;
 
 #End#
