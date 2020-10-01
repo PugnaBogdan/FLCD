@@ -1,0 +1,20 @@
+#Start#
+
+number a,b;
+number gcd is 0;
+
+loop ( a different b )
+#
+	if ( a bigger b)
+	#
+		a is a minus b;
+	#
+	else
+	#
+		b is b minus a;
+	#
+#
+
+show "GCD is " + a; 
+
+#End#

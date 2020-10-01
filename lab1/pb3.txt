@@ -1,0 +1,24 @@
+#Start#
+
+number n,i;
+
+read n;
+i is 0;
+
+number [] A;
+
+for ( i;i smaller n;i is i plus 1)
+#
+	read A[i];
+#
+
+numbers sum is 0;
+i is 0;
+for (i;i smaller size_A;i is i plus 1)
+#
+	sum is sum plus A[i];
+#
+
+show sum;
+
+#End#

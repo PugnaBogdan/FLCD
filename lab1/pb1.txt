@@ -1,0 +1,18 @@
+#Start#
+
+number [] A is [1,2,3,4,5];
+number max is 10;
+number i is 0;
+
+loop ( i smaller size_A ) 
+#
+	if ( A[i] bigger max ) 
+	#
+		max is A[i];
+	#
+	i is i plus 1;
+#
+
+show max;
+
+#End#

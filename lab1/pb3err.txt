@@ -1,0 +1,18 @@
+#Start#
+
+words a,b,c;
+letter d;
+
+read a;
+
+rea b; // lexycal error - rea 
+
+read c;
+
+if ( a equals c)
+#
+	show "a ii egal cu b";
+	// lexycal error - if not closed
+show d plus d;
+
+#End#
