@@ -1,0 +1,27 @@
+EBNF
+
+program = "Start" "End"
+
+declaration = type "Iden" ";"| type "Iden" "is" "Cons" ";"
+
+type: "number" |"string" | "letter" | "arrayN"
+
+expression = expression ("plus"|"minus") term |term";"
+
+term = term ("times"|"divide") factor| factor
+
+factor = "(" expression ")" | "Cons"| "Iden"
+
+iostmt = ("read" | "show") ("Iden"|"Cons") ";"
+
+ifstmt = "if" "("condition")" "#" stmt "#" ["ELSE" "#"stmt"#"]
+
+condition = expression relation expression
+
+realtion = "smaller" | "smaller_or_equal" | "equal" | "different" | "bigger_or_equal" | "bigger"
+
+stmt = simplstmt 
+
+simplstmt = assignstmt | iostmt
+
+assignstmt = "Iden" "is" expression 

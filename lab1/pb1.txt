@@ -1,18 +1,18 @@
-#Start#
+Start
 
-number [] A is [1,2,3,4,5];
-number max is 10;
-number i is 0;
+arrayN _A is [1,2,3,4,5];
+number _max is 10;
+number _i is 0;
 
-loop ( i smaller size_A ) 
+loop ( _i smaller size(_A) ) 
 #
-	if ( A[i] bigger max ) 
+	if ( _A[i] bigger _max ) 
 	#
-		max is A[i];
+		_max is _A[i];
 	#
-	i is i plus 1;
+	_i is _i plus 1;
 #
 
-show max;
+show _max;
 
-#End#
+End

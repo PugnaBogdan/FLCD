@@ -1,24 +1,24 @@
-#Start#
+Start
 
-number n,i;
+number _n,_i;
 
-read n;
-i is 0;
+read _n;
+_i is 0;
 
-number [] A;
+arrayN _A;
 
-for ( i;i smaller n;i is i plus 1)
+for ( _i; _i smaller _n;_i is _i plus 1)
 #
-	read A[i];
-#
-
-numbers sum is 0;
-i is 0;
-for (i;i smaller size_A;i is i plus 1)
-#
-	sum is sum plus A[i];
+	read _A[i];
 #
 
-show sum;
+number _sum is 0;
+_i is 0;
+for (_i;_i smaller size(_A);_i is _i plus 1)
+#
+	_sum is _sum plus _A[i];
+#
 
-#End#
+show _sum;
+
+End

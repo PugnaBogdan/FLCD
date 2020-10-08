@@ -1,0 +1,54 @@
+Alphabet:
+
+a. Upper (A-Z) and lower case letters (a-z) of the English alphabet
+
+       b. Underline character '_';
+
+       c. Decimal digits (0-9);
+
+Lexic:
+
+      a.Special symbols, representing:
+
+- operators:    plus, minus, times, smaller, smaller_or_equal, bigger, bigger_or_equal, is, divide, equals
+
+- separators:      [] {} ## space () , ; 
+
+- reserved words:     loop, if, Start, End, show, read, letter, for, arrayN, string
+
+
+
+      b.Iden
+
+  -a sequence of letters and  digits, such that the first character is always an underline "_":
+
+    identifier = "_"[letters|digit] | "_"{[letters|digit|"_"]}
+
+    letters = "A" | "B" | . ..| "Z" | "a"|"b"| ... |"z"
+
+    digit = "0" | "1" |...| "9"
+
+
+      c.Cons
+
+1.number - rule: //data type
+
+      	number = "0"|["+"|"-"]non_zero_digit{digit}
+	digit = "0"|non_zero_digit
+	non_zero_digit = "1"|"2"|...|"9"
+
+2.letter
+
+    letter = 'letters'|'digit' //data type
+
+3. arrayN //user defined data type
+
+     
+	arrayN = "[" [list_of_numbers] "]"
+	list_of_numbers = number{", "number}
+
+4. string 
+	
+	constchar = "string"
+      	string = letter {string}
+      	letter = 'letters'|'digit'

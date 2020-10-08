@@ -1,0 +1,8 @@
+Lexic.txt (file containing mini language lexic description; see example)
+
+token.in (containing the list of all tokens corresponding to the minilanguage)
+
+Syntax.in - the syntactical rules of the language
+
+-----------------------------
+

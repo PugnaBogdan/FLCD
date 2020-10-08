@@ -1,20 +1,22 @@
-#Start#
 
-number a,b;
-number gcd is 0;
+Start
 
-loop ( a different b )
+number _a,_b;
+number _gcd is 0;
+
+loop ( _a different _b )
 #
-	if ( a bigger b)
+	if ( _a bigger _b)
 	#
-		a is a minus b;
+		_a is _a minus _b;
 	#
 	else
 	#
-		b is b minus a;
+		_b is _b minus _a;
 	#
 #
 
-show "GCD is " + a; 
+show "GCD is " plus _a; 
 
-#End#
+
+End

@@ -1,8 +1,8 @@
-#Start#
+Start
 
-words _a,_b,_c;
+string _a,_b,_c;
 letter _d;
-.a is "error"; // lexycal error
+.a is "error"; // lexycal error - identifiers begin with _
 
 read _a;
 
@@ -10,11 +10,11 @@ read b; // lexycal error
 
 read _c;
 
-if ( _a equals _c)
+if ( _a equ.als _c) // lexycal error
 #
 	show "a ii egal cu b";
 #
 
 show _d plus _d;
 
-#End#
+End
