@@ -25,3 +25,5 @@ stmt = simplstmt
 simplstmt = assignstmt | iostmt
 
 assignstmt = "Iden" "is" expression 
+
+whilestmt = "loop" "(" condition ")" "#" stmt "#"
