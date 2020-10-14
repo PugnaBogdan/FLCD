@@ -1,24 +1,10 @@
 EBNF
 
-program = "Start" "End"
+program = "Start" cmpdstmt "End"
 
-declaration = type "Iden" ";"| type "Iden" "is" "Cons" ";"
+cmpdstmt = stmtlist 
 
-type: "number" |"string" | "letter" | "arrayN"
-
-expression = expression ("plus"|"minus") term |term";"
-
-term = term ("times"|"divide") factor| factor
-
-factor = "(" expression ")" | "Cons"| "Iden"
-
-iostmt = ("read" | "show") ("Iden"|"Cons") ";"
-
-ifstmt = "if" "("condition")" "#" stmt "#" ["ELSE" "#"stmt"#"]
-
-condition = expression relation expression
-
-realtion = "smaller" | "smaller_or_equal" | "equal" | "different" | "bigger_or_equal" | "bigger"
+stmtlist = stmt “;”| stmt ";" stmtlist
 
 stmt = simplstmt 
 
@@ -26,4 +12,31 @@ simplstmt = assignstmt | iostmt
 
 assignstmt = "Iden" "is" expression 
 
+declstmt = declaration  | declaration "," declstmt  
+
+declaration = type "Iden" ";"| type "Iden" "is" "Cons" ";"
+
 whilestmt = "loop" "(" condition ")" "#" stmt "#"
+
+type: "number" |"string" | "letter" | "arrayN"
+
+expression = expression ("plus"|"minus") term |term";"
+
+forstmt = "for" "(" ( assignstmt | "Iden" ) ";" condition ";" assignstmt ")" "#" stmtlist "#" 
+
+term = term ("times"|"divide") factor| factor 
+
+factor = "(" expression ")" | "Cons"| "Iden"
+
+iostmt = ("read" | "show") ("Iden"|"Cons") ";"
+
+ifstmt = "if" "("condition")" "#" stmt "#" ["ELSE" "#"stmt"#"]
+
+condition = "(" expression relation expression ")"
+
+arraydecl = "Array" ["[" [Number] "]"] "is" type
+
+realtion = "smaller" | "smaller_or_equal" | "equal" | "different" | "bigger_or_equal" | "bigger"
+
+
+
