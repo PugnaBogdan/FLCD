@@ -1,4 +1,4 @@
-import HashTable
+from Tables import HashTable
 
 
 class STT:

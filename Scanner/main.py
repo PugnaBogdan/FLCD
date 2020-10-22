@@ -1,4 +1,4 @@
-import SymbolTable as st
+from Tables import SymbolTable as st
 
 size = 3
 
