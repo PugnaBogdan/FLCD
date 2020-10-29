@@ -20,15 +20,17 @@ import re as regex
 # print(ST)
 
 
-s = st.STT(10)
+sIdentifiers = st.STT(10)
+sConstants = st.STT(10)
 p = pif.PIF()
-fileName = 'D:/anul3/semestrul1/FLCD/Scanner/InputFiles/pb3err.txt'
+fileName = 'D:/anul3/semestrul1/FLCD/Scanner/InputFiles/pb1.txt'
 
-scan = sc.Scanner(s, p, fileName)
+scan = sc.Scanner(sConstants, sIdentifiers, p, fileName)
 
 scan.scann()
 
-print(scan.get_st())
+print(scan.get_stC())
+print(scan.get_stI())
 print(scan.get_pif())
 
 

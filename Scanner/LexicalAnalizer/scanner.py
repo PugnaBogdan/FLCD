@@ -13,14 +13,18 @@ class Scanner:
     identifierCode = ""
     ex = ""
 
-    def __init__(self,stSize,pif,filename):
+    def __init__(self,stc,sti,pif,filename):
         self.__pif = pif
-        self.__st = stSize
+        self.__stC = stc
+        self.__stI = sti
         self.__fileName = filename
         self.__ok = 0
 
-    def get_st(self):
-        return self.__st
+    def get_stC(self):
+        return self.__stC
+
+    def get_stI(self):
+        return self.__stI
 
     def set_st(self, a):
         self.__st = a
@@ -82,10 +86,10 @@ class Scanner:
                             self.__pif.add(myW, -1)
                             continue
                         elif self.identifier(myW):
-                            x = self.__st.get_st_pos(myW)
+                            x = self.__stI.get_st_pos(myW)
                             self.__pif.add("iden_1",x)
                         elif self.constant(myW):
-                            x = self.__st.get_st_pos(myW)
+                            x = self.__stC.get_st_pos(myW)
                             self.__pif.add("cons_1", x)
                         else:
                             self.ex += 'Error ' + myW + ' - line ' + str(count) + "\n"
@@ -99,10 +103,10 @@ class Scanner:
                             continue
 
                         elif self.identifier(myW):
-                            x = self.__st.get_st_pos(myW)
+                            x = self.__stI.get_st_pos(myW)
                             self.__pif.add("iden_1", x)
                         elif self.constant(myW):
-                            x = self.__st.get_st_pos(myW)
+                            x = self.__stC.get_st_pos(myW)
                             self.__pif.add("cons_1", x)
                         else:
                             self.ex += 'Error ' + myW + ' - line ' + str(count) + "\n"
