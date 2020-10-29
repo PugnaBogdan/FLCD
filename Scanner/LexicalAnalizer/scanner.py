@@ -1,7 +1,9 @@
 
 import Tables.ProgramInternalFile as p
-import Tables.SymbolTable
-pif = p.PIF()
+import Tables.SymbolTable as s
+import re as regex
+
+
 class Scanner:
 
     reservedWords = []
@@ -9,6 +11,25 @@ class Scanner:
     operators = []
     constantCode = ""
     identifierCode = ""
+    ex = ""
+
+    def __init__(self,stSize,pif,filename):
+        self.__pif = pif
+        self.__st = stSize
+        self.__fileName = filename
+        self.__ok = 0
+
+    def get_st(self):
+        return self.__st
+
+    def set_st(self, a):
+        self.__st = a
+
+    def get_pif(self):
+        return self.__pif
+
+    def set_pif(self, a):
+        self.__pif= a
 
     def TokenizeTokenFile(self):
         TokenFile = open('D:/anul3/semestrul1/FLCD/Scanner/InputFiles/token.in','r')
@@ -32,56 +53,70 @@ class Scanner:
     def detect(self):
         pass
 
+    def identifier(self, word):
+
+        return regex.search(r'^_([a-z]|[A-Z]|[0-9])*$', word)
+
+    def constant(self, word):
+
+        return regex.search(r'^(0|[-]?[1-9][0-9]*)$|^"([a-z]|[A-Z]|[0-9]|-)*"$', word)
+
     def scann(self):
-        problemFile = open('D:/anul3/semestrul1/FLCD/Scanner/InputFiles/pb1.txt','r')
+        self.TokenizeTokenFile()
+        problemFile = open(self.__fileName,'r')
         Lines = problemFile.readlines()
         count = 0
         for line in Lines:
+            count+= 1;
             for word in line.split():
-                #print(word)
+
                 if word.strip() in self.operators or word.strip() in self.reservedWords:
-                    pif.add(word,0)
+                    self.__pif.add(word,-1)
                     continue
-                i=0
                 myW = ""
 
                 for i in range(len(word)):
-
                     myW= myW+word[i]
                     if i == len(word)-1:
-                        if myW in self.operators or myW in self.reservedWords:
-                            pif.add(myW, 0)
+                        if myW in self.operators or myW in self.reservedWords or myW in self.separators:
+                            self.__pif.add(myW, -1)
                             continue
-                        pif.add(myW,1)
+                        elif self.identifier(myW):
+                            x = self.__st.get_st_pos(myW)
+                            self.__pif.add("iden_1",x)
+                        elif self.constant(myW):
+                            x = self.__st.get_st_pos(myW)
+                            self.__pif.add("cons_1", x)
+                        else:
+                            self.ex += 'Error ' + myW + ' - line ' + str(count) + "\n"
+
                         myW=""
                         continue
                     if word[i + 1] in self.separators:
-                        if myW in self.operators or myW in self.reservedWords:
-                            pif.add(myW, 0)
+                        if myW in self.operators or myW in self.reservedWords  or myW in self.separators:
+                            self.__pif.add(myW, -1)
                             myW=""
                             continue
+
+                        elif self.identifier(myW):
+                            x = self.__st.get_st_pos(myW)
+                            self.__pif.add("iden_1", x)
+                        elif self.constant(myW):
+                            x = self.__st.get_st_pos(myW)
+                            self.__pif.add("cons_1", x)
                         else:
-                            pif.add(myW, 1)
-                            myW=""
-                            continue
+                            self.ex += 'Error ' + myW + ' - line ' + str(count) + "\n"
+
+                        myW=""
+                        continue
                             #constant or identifier
                     if word[i] in self.separators:
-                        pif.add(word[i],0)
+                        self.__pif.add(word[i],-1)
                         myW = ""
 
 
 
-
-
-
-
-
-
-
-
-x = Scanner()
-
-x.TokenizeTokenFile()
-x.scann()
-
-print(pif)
+        if self.ex == '':
+            print("good")
+        else:
+            print(self.ex)

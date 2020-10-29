@@ -1,0 +1,24 @@
+Start
+
+number _n,_i;
+
+read _n;
+_i is 0;
+
+arrayN _A;
+
+for ( _i; _i smaller _n;_i is _i plus 1)
+#
+	read _A[_i];
+#
+
+number _sum is 0;
+_i is 0;
+for (_i;_i smaller size(_A);_i is _i plus 1)
+#
+	_sum is _sum plus _A[_i];
+#
+
+show _sum;
+
+End

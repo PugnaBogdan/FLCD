@@ -8,8 +8,10 @@ bigger_or_equal
 is
 divide
 equals
+different
 loop
 if
+else
 Start
 End
 show
@@ -25,12 +27,9 @@ size
 {
 }
 #
-#
 (
 )
 ,
-"
-"
 ;
 iden_1
 cons_1

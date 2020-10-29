@@ -1,0 +1,20 @@
+Start
+
+string _a,_b,_c;
+letter _d;
+.a is "error";
+
+read _a;
+
+read b;
+
+read _c;
+
+if ( _a equ.als _c)
+#
+	show "a ii egal cu b";
+#
+
+show _d plus _d;
+
+End

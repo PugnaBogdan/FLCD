@@ -1,0 +1,22 @@
+
+Start
+
+number _a,_b;
+number _gcd is 0;
+
+loop ( _a different _b )
+#
+	if ( _a bigger _b)
+	#
+		_a is _a minus _b;
+	#
+	else
+	#
+		_b is _b minus _a;
+	#
+#
+
+show "GCDis" _a;
+
+
+End

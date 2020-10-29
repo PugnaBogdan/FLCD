@@ -1,12 +1,12 @@
 Start
-arrayN _A is [1,2,3,4,5];
+arrayN _A is [1,1,5];
 number _max is 10;
 number _i is 0;
 loop ( _i smaller size(_A) ) 
 #
-if ( _A[i] bigger _max )
+if ( _A[_i] bigger _max )
 #
-_max is _A[i];
+_max is _A[_i];
 #
 _i is _i plus 1;
 #
