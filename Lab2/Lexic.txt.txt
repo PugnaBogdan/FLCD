@@ -12,7 +12,7 @@ Lexic:
 
 - operators:    plus, minus, times, smaller, smaller_or_equal, bigger, bigger_or_equal, is, divide, equals
 
-- separators:      [] {} ## space () , ; 
+- separators:      [] {} # space () , ; 
 
 - reserved words:     loop, if, Start, End, show, read, letter, for, arrayN, string
 
