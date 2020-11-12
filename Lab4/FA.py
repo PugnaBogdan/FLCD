@@ -6,6 +6,10 @@ class FA:
         self.__S = {}
         self.__P = ""
         self.__F = []
+        self.__OK = False
+
+    def getOK(self):
+        return self.__OK
 
     def readFile(self):
 
@@ -38,11 +42,56 @@ class FA:
                 self.__S[k] = v
                 count+=1
 
+        self.__OK = True
+
+    def checkInput(self):
+
+        if self.__P not in self.__Q:
+            return False
+        for finalState in self.__F:
+            if finalState not in self.__Q:
+                return False
+
+        for key in self.__S.keys():
+
+            state = key[0]
+            alphabetKey = key[1]
+
+            if state not in self.__Q:
+                return False
+            if alphabetKey not in self.__E:
+                return False
+
+            for goToState in self.__S[key]:
+                if goToState not in self.__Q:
+                    return False
+        return True
+
+    def getInput(self):
+
+        self.readFile()
+        if self.checkInput():
+            return "Input ok"
+        return "Wrong Input"
+
     def DFACheck(self):
         for prod in self.__S.keys():
             if len(self.__S[prod]) >1:
                 return False
         return True
+
+    def checkSequence(self, sequence):
+        if self.DFACheck():
+            state = self.__P
+            #parse the sequence char by char
+            for alphabetChar in sequence:
+                if (state, alphabetChar) in self.__S.keys():
+                    state = self.__S[(state, alphabetChar)][0]
+                else:
+                    return False
+            #check if the last state is the final state
+            return state in self.__F
+        return False
 
     def __str__(self):
         rS ="S = {"
