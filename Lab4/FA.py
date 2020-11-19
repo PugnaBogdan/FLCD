@@ -11,6 +11,7 @@ class FA:
     def getOK(self):
         return self.__OK
 
+
     def readFile(self):
 
         finiteFile = open('D:\\anul3\\semestrul1\\FLCD\Lab4\\input','r')
@@ -41,6 +42,7 @@ class FA:
                     v.append(x[c])
                 self.__S[k] = v
                 count+=1
+                print(self.__S)
 
         self.__OK = True
 
