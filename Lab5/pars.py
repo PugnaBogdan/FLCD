@@ -17,6 +17,7 @@ class Parser:
         for nonTerminal in self.grammar.N:
             self.firstSet[nonTerminal] = self.FirstOf(nonTerminal)
 
+
     def FirstOf(self, nonTerminal):
 
         temp = []
@@ -31,9 +32,7 @@ class Parser:
                     temp.append(firstSymbol)
                     break
                 else:
-
                     l = self.FirstOf(firstSymbol)
-
                     return l
         return temp
 
@@ -84,7 +83,11 @@ class Parser:
                                 self.followSet[nonTerm] = self.followSet[nonTerm].union(set(v[characterIndex+1]))
                             else:
                                 print(self.firstSet[k])
-                                self.followSet[nonTerm] = self.followSet[nonTerm].union(set(self.firstSet[k]))
+                                if("e" in set(self.firstSet[v[characterIndex + 1]])):
+                                    self.followSet[nonTerm] = self.followSet[nonTerm].union(set(self.firstSet[v[characterIndex + 1]]).union(self.followSet[k]))
+                                else:
+                                    self.followSet[nonTerm] = self.followSet[nonTerm].union(
+                                        set(self.firstSet[v[characterIndex + 1]]))
     def getFollow(self):
         return self.followSet
 #     if (firstSet.containsKey(nonTerminal))
