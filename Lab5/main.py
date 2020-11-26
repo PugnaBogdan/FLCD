@@ -1,5 +1,3 @@
-import null as null
-
 import grammar as g
 from pars import Parser
 
@@ -45,6 +43,13 @@ class UI:
         self.parser.generateFirstSet()
         print(self.parser.getFirst())
 
+    def printFollowSet(self):
+        self.parser = Parser(self.grammar)
+        self.parser.generateFirstSet()
+        self.parser.follow()
+        print(self.parser.getFirst())
+        print(self.parser.getFollow())
+
     def menu(self):
         print("1 - read input")
         print("2 - print Productions")
@@ -52,6 +57,7 @@ class UI:
         print("4 - print Terminals")
         print("5 - print Production for terminal")
         print("6 - print FirstSet")
+        print("7 - print FollowSet")
 
 
     def run(self):
@@ -60,7 +66,8 @@ class UI:
                        '3': self.printNonTerminals,
                        '4': self.printTerminals,
                        '5': self.printProduction,
-                       '6': self.printFirstSet
+                       '6': self.printFirstSet,
+                       '7': self.printFollowSet
                        }
         while True:
             self.menu()
