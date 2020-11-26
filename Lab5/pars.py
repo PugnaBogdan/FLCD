@@ -20,7 +20,6 @@ class Parser:
     def FirstOf(self, nonTerminal):
 
         temp = []
-        terminals = self.grammar.T
         for prod in self.grammar.getProductionForNonTerminal(nonTerminal):
             for time in prod:
                 firstSymbol = time[0]
@@ -32,8 +31,10 @@ class Parser:
                     temp.append(firstSymbol)
                     break
                 else:
-                    temp.append(self.FirstOf(firstSymbol))
-                    return temp
+
+                    l = self.FirstOf(firstSymbol)
+
+                    return l
         return temp
 
     def checkNonTermianl(self, symbol):

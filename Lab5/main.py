@@ -47,7 +47,6 @@ class UI:
         self.parser = Parser(self.grammar)
         self.parser.generateFirstSet()
         self.parser.follow()
-        print(self.parser.getFirst())
         print(self.parser.getFollow())
 
     def menu(self):
