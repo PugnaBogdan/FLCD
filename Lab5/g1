@@ -1,5 +1,7 @@
-S A B C
-a b c
-S -> aA | bB
-A -> a
-B -> b
+S A B C D
+( ) + * a
+S -> BA
+A -> +BA | e
+B -> DC
+C -> *DC | e
+D -> (S) | a
