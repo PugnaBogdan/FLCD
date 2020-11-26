@@ -49,6 +49,13 @@ class UI:
         self.parser.follow()
         print(self.parser.getFollow())
 
+    def printTable(self):
+        self.parser = Parser(self.grammar)
+        self.parser.generateFirstSet()
+        self.parser.follow()
+        self.parser.Table()
+        print(self.parser.table)
+
     def menu(self):
         print("1 - read input")
         print("2 - print Productions")
@@ -57,6 +64,7 @@ class UI:
         print("5 - print Production for terminal")
         print("6 - print FirstSet")
         print("7 - print FollowSet")
+        print("8 - print Table")
 
 
     def run(self):
@@ -66,7 +74,8 @@ class UI:
                        '4': self.printTerminals,
                        '5': self.printProduction,
                        '6': self.printFirstSet,
-                       '7': self.printFollowSet
+                       '7': self.printFollowSet,
+                       '8': self.printTable
                        }
         while True:
             self.menu()

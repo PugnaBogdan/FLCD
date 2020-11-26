@@ -17,6 +17,7 @@ class Grammar:
         finiteFile = open('D:\\anul3\\semestrul1\\FLCD\\Lab5\\g1', 'r') # pugna
         lines = finiteFile.readlines()
         count = 0
+        index  = 0
         for line in lines:
             if count == 0:
                 self.N = line.strip(' ').split()
@@ -33,7 +34,8 @@ class Grammar:
                 NonTerminal = linesProds[0][0]
                 listDest = linesProds[1].strip().split(' | ')
                 for destination in listDest:
-                    resultDest.append(destination)
+                    index+= 1
+                    resultDest.append((destination,index))
                 self.S[NonTerminal] = resultDest
                 count+=1
 
@@ -68,8 +70,7 @@ class Grammar:
         return res
 
     def __str__(self):
-
-        return self.S
+        return str(self.S)
 
 
 

@@ -23,7 +23,7 @@ class Parser:
         temp = []
         for prod in self.grammar.getProductionForNonTerminal(nonTerminal):
             for time in prod:
-                firstSymbol = time[0]
+                firstSymbol = time[0][0]
 
                 if firstSymbol == 'e':
                     temp.append("e")
@@ -43,12 +43,12 @@ class Parser:
 
     def getProdsWithNonTerm(self, nonTerm):
         result = {}
-        print(nonTerm)
+        # print(nonTerm)
         for k,v in self.grammar.S.items():
             for item in v:
 
-                if (nonTerm in item):
-                    result[k] = item
+                if (nonTerm in item[0]):
+                    result[k] = item[0]
                     #print(result.items())
 
         return result
@@ -65,7 +65,7 @@ class Parser:
             for k, v in self.getProdsWithNonTerm(nonTerm).items():
                 # print(v)
                 for characterIndex in range(0, len(v)):
-                    if (v[characterIndex] == nonTerm):
+                    if (v[characterIndex][0] == nonTerm):
                         # print("char index eq non term")
                         if (characterIndex == len(v) - 1):
                             # print("case when it's the last")
@@ -77,33 +77,37 @@ class Parser:
                             # print("case when there is somethign after it")
                             # print(self.followSet)
                             # print(self.followSet[nonTerm])
-                            print(v)
+                            #print(v)
                             #print(v[characterIndex + 1])
-                            if(v[characterIndex+1] in self.grammar.T):
-                                self.followSet[nonTerm] = self.followSet[nonTerm].union(set(v[characterIndex+1]))
+                            if(v[characterIndex+1][0] in self.grammar.T):
+                                self.followSet[nonTerm] = self.followSet[nonTerm].union(set(v[characterIndex+1][0]))
                             else:
-                                print(self.firstSet[k])
-                                if("e" in set(self.firstSet[v[characterIndex + 1]])):
-                                    self.followSet[nonTerm] = self.followSet[nonTerm].union(set(self.firstSet[v[characterIndex + 1]]).union(self.followSet[k]))
+                                # print(self.firstSet[k])
+                                if("e" in set(self.firstSet[v[characterIndex + 1][0]])):
+                                    self.followSet[nonTerm] = self.followSet[nonTerm].union(set(self.firstSet[v[characterIndex + 1][0]]).union(self.followSet[k]))
                                 else:
                                     self.followSet[nonTerm] = self.followSet[nonTerm].union(
-                                        set(self.firstSet[v[characterIndex + 1]]))
+                                        set(self.firstSet[v[characterIndex + 1][0]]))
     def getFollow(self):
         return self.followSet
-#     if (firstSet.containsKey(nonTerminal))
-#         return firstSet.get(nonTerminal);
-#     Set<String> temp = new HashSet<>();
-#     Set<String> terminals = grammar.getTerminals();
-#     for (Production production : grammar.getProductionsForNonterminal(nonTerminal))
-#         for (List<String> rule : production.getRules()) {
-#             String firstSymbol = rule.get(0);
-#             if (firstSymbol.equals("ε"))
-#                 temp.add("ε");
-#             else if (terminals.contains(firstSymbol))
-#                 temp.add(firstSymbol);
-#             else
-#                 temp.addAll(firstOf(firstSymbol));
-#         }
-#     return temp;
-# }
+
+    def Table(self):
+
+        for key, value in self.grammar.S.items():
+            rowSymbol = key
+            for v in value:
+                rule = v[0]
+                print(rule)
+                pass
+                # for columnSymbol in self.grammar.T + ['e']:
+                #     pair = (rowSymbol, columnSymbol)
+                #     if rule[0] == columnSymbol and columnSymbol != 'e':
+                #         self.table[pair] = v
+
+
+
+        for t in self.grammar.T:
+            self.table[(t, t)] = ('pop')
+        self.table[('$', '$')] = ('acc')
+
 
