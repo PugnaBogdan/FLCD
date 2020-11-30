@@ -56,6 +56,10 @@ class UI:
         self.parser.Table()
         print(self.parser.table)
 
+    def parseSequence(self):
+        sequence = "a*(a+a)"
+        self.parser.parse(sequence)
+
     def menu(self):
         print("1 - read input")
         print("2 - print Productions")
@@ -65,6 +69,7 @@ class UI:
         print("6 - print FirstSet")
         print("7 - print FollowSet")
         print("8 - print Table")
+        print("9 - parse Sequence")
 
 
     def run(self):
@@ -75,7 +80,8 @@ class UI:
                        '5': self.printProduction,
                        '6': self.printFirstSet,
                        '7': self.printFollowSet,
-                       '8': self.printTable
+                       '8': self.printTable,
+                       '9': self.parseSequence
                        }
         while True:
             self.menu()

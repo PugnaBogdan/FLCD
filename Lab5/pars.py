@@ -1,6 +1,7 @@
 import grammar as g
 
 
+
 class Parser:
     def __init__(self, grammar):
 
@@ -8,6 +9,12 @@ class Parser:
         self.firstSet = {i: [] for i in self.grammar.N}
         self.followSet = {i: set() for i in self.grammar.N}
         self.table = {}
+        #input stack
+        self.alpha = list()
+        #working stack
+        self.beta = list()
+        #output stack
+        self.pi = list()
 
     def getFirst(self):
 
@@ -95,19 +102,92 @@ class Parser:
 
         for key, value in self.grammar.S.items():
             rowSymbol = key
+            # print(key)
+            # print(value)
             for v in value:
-                rule = v[0]
-                print(rule)
-                pass
-                # for columnSymbol in self.grammar.T + ['e']:
-                #     pair = (rowSymbol, columnSymbol)
-                #     if rule[0] == columnSymbol and columnSymbol != 'e':
-                #         self.table[pair] = v
+                production = v[0]
+                #print(production)
+                for columnSymbol in self.grammar.T + ['$']:
+                    pair = (rowSymbol, columnSymbol)
 
+                    if production[0] == columnSymbol and columnSymbol != 'e':
+                        self.table[pair] = v
+                    elif production[0] in self.grammar.N and columnSymbol in self.firstSet.get(production[0]):
+                        if pair not in self.table:
+
+                            self.table[pair] = v
+                    else:
+                        if production[0] == 'e':
+                            #element is b
+                            for element in self.followSet.get(rowSymbol):
+                                if(element == 'e'):
+                                    element = '$'
+                                self.table[(rowSymbol,element)] = v
 
 
         for t in self.grammar.T:
             self.table[(t, t)] = ('pop')
         self.table[('$', '$')] = ('acc')
+
+    #create the initial configuration
+    def prepareStax(self,sequence):
+        self.alpha = list()
+        self.beta = list()
+        self.pi = list()
+
+        #put S$ in beta
+        self.beta.append('$')
+        self.beta.append(self.grammar.N[0])
+
+
+        #put everything from the fronteer and $ in alpha
+        self.alpha.append('$')
+        for i in range(0, len(sequence)):
+            self.alpha.append(sequence[len(sequence)-i-1])
+
+
+
+        #add epsilon to pi
+        self.pi.append('e')
+
+    def parse(self,sequence):
+
+        #create initial configuration like in the course
+        self.prepareStax(sequence)
+        print(self.alpha)
+        print(self.beta)
+        print(self.pi)
+
+        go = True
+        lastIndexAlpha = len(self.alpha) - 1
+        lastIndexBeta = len(self.beta) - 1
+
+        s = ""
+        #algortimul din cursu 7
+        while go:
+            tableValue = self.table.get((self.beta[lastIndexBeta],self.alpha[lastIndexAlpha]))
+            print(tableValue)
+            if (isinstance(tableValue, tuple) and tableValue!= None):
+                #print(tableValue)
+                self.beta.pop()
+                if 'e' not in tableValue[0]:
+                    for element in reversed(tableValue[0]):
+                        self.beta.append(element)
+
+                self.pi.append(tableValue[1])
+            elif (tableValue == "pop"):
+                self.beta.pop()
+                self.alpha.pop()
+            elif(tableValue == "acc"):
+                go = False
+                s = "acc"
+            else:
+                s = "err"
+
+        if s == "acc":
+            print("Sequence accepted")
+            print(self.pi)
+        else:
+            print("Sequence not accepted")
 
 
