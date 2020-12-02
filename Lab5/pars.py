@@ -157,14 +157,13 @@ class Parser:
         print(self.alpha)
         print(self.beta)
         print(self.pi)
-
         go = True
-        lastIndexAlpha = len(self.alpha) - 1
-        lastIndexBeta = len(self.beta) - 1
 
         s = ""
         #algortimul din cursu 7
         while go:
+            lastIndexAlpha = len(self.alpha) - 1
+            lastIndexBeta = len(self.beta) - 1
             tableValue = self.table.get((self.beta[lastIndexBeta],self.alpha[lastIndexAlpha]))
             print(tableValue)
             if (isinstance(tableValue, tuple) and tableValue!= None):
@@ -183,6 +182,7 @@ class Parser:
                 s = "acc"
             else:
                 s = "err"
+                go = False
 
         if s == "acc":
             print("Sequence accepted")
