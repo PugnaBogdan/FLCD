@@ -1,0 +1,21 @@
+program cmpdstmt stmtlist stmt simplstmt assignstmt declstmt declaration whilestmt type expression forstmt term factor iostmt ifstmt condition arraydecl realtion
+plus minus times number smaller smaller_or_equal bigger bigger_or_equal is divide equals loop if Start End show read letter for arrayN string [ ] { } # ( ) ,  ; iden_1 cons_1
+program -> Start cmpdstmt End
+cmpdstmt -> stmtlist
+stmtlist -> stmt ; | stmt ; stmtlist
+stmt -> simplstmt
+simplstmt -> assignstmt | iostmt
+assignstmt -> iden_1 is expression
+declstmt -> declaration  | declaration , declstmt
+declaration -> type iden_1 ; | type iden_1 is cons_1 ;
+whilestmt -> loop ( condition ) # stmt #
+type -> number | string | letter | arrayN
+expression -> expression plus term | expression minus term | term
+forstmt -> for ( assignstmt ; condition ; assignstmt ) # stmtlist #
+term -> term times factor | term divide factor | factor
+factor -> ( expression ) | cons_1 | iden_1
+iostmt -> read iden_1 | show iden_1 | read cons_1 | show cons_1 ;
+ifstmt -> if ( condition ) # stmt # | if ( condition ) # stmt # ELSE # stmt #
+condition -> expression relation expression
+arraydecl -> arrayN [ number ] is type
+relation -> smaller | smaller_or_equal | equal | different | bigger_or_equal | bigger

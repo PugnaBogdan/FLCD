@@ -58,7 +58,10 @@ class UI:
 
     def parseSequence(self):
         sequence = "a*(a+a)"
-        self.parser.parse(sequence)
+        out1 = open('D:\\anul3\\semestrul1\\FLCD\\Lab5\\out1.txt', 'w') # pugna
+        x = self.parser.parse(sequence)
+        out1.write(str(x))
+
 
     def menu(self):
         print("1 - read input")

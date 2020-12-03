@@ -1,5 +1,6 @@
 import grammar as g
-
+import sys
+#sys.setrecursionlimit(5000)
 
 
 class Parser:
@@ -31,6 +32,8 @@ class Parser:
         for prod in self.grammar.getProductionForNonTerminal(nonTerminal):
             for time in prod:
                 firstSymbol = time[0][0]
+                # r = time.split()
+                # firstSymbol = r[0]
 
                 if firstSymbol == 'e':
                     temp.append("e")
@@ -186,7 +189,7 @@ class Parser:
 
         if s == "acc":
             print("Sequence accepted")
-            print(self.pi)
+            return self.pi
         else:
             print("Sequence not accepted")
 

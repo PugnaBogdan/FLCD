@@ -13,8 +13,8 @@ class Grammar:
 
     def readFile(self):
 
-        finiteFile = open('C:\\Users\\Rares2\\Desktop\\an3\\sem1Eu\\FLCD\\pguna\\FLCD\\Lab5\\g1') # rares
-        #finiteFile = open('D:\\anul3\\semestrul1\\FLCD\\Lab5\\g1', 'r') # pugna
+        #finiteFile = open('C:\\Users\\Rares2\\Desktop\\an3\\sem1Eu\\FLCD\\pguna\\FLCD\\Lab5\\g1') # rares
+        finiteFile = open('D:\\anul3\\semestrul1\\FLCD\\Lab5\\g1', 'r') # pugna
         lines = finiteFile.readlines()
         count = 0
         index  = 0
@@ -31,7 +31,7 @@ class Grammar:
 
                 resultDest =[]
                 linesProds = line.split("->")
-                NonTerminal = linesProds[0][0]
+                NonTerminal = linesProds[0].strip(' ')
                 listDest = linesProds[1].strip().split(' | ')
                 for destination in listDest:
                     index+= 1
