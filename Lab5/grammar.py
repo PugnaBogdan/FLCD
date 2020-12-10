@@ -69,6 +69,15 @@ class Grammar:
 
         return res
 
+    def getProdutionForIndex(self, index):
+        r = ""
+        for item in self.S:
+            for item2 in self.S[item]:
+                if item2[1] == index:
+                    r = r+str(item)+" -> "+str(item2[0])
+
+        return r
+
     def __str__(self):
         return str(self.S)
 

@@ -158,10 +158,13 @@ class Parser:
         #create initial configuration like in the course
         self.prepareStax(sequence)
         print(self.alpha)
+        print()
         print(self.beta)
+        print()
         print(self.pi)
+        print()
         go = True
-
+        r = ""
         s = ""
         #algortimul din cursu 7
         while go:
@@ -175,8 +178,8 @@ class Parser:
                 if 'e' not in tableValue[0]:
                     for element in reversed(tableValue[0]):
                         self.beta.append(element)
-
                 self.pi.append(tableValue[1])
+                r = r+"\n"+self.grammar.getProdutionForIndex(tableValue[1])
             elif (tableValue == "pop"):
                 self.beta.pop()
                 self.alpha.pop()
@@ -189,6 +192,10 @@ class Parser:
 
         if s == "acc":
             print("Sequence accepted")
+
+            out1 = open('D:\\anul3\\semestrul1\\FLCD\\Lab5\\out1.txt', 'w')  # pugna
+            out1.write(str(self.pi))
+            out1.write(r)
             return self.pi
         else:
             print("Sequence not accepted")
