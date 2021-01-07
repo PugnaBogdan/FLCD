@@ -1,18 +1,14 @@
 Start
-
 arrayN _A is [1,2,3,4,5];
 number _max is 10;
 number _i is 0;
-
 loop ( _i smaller size(_A) ) 
 #
-	if ( _A[i] bigger _max ) 
-	#
-		_max is _A[i];
-	#
-	_i is _i plus 1;
+if ( _A[i] bigger _max ) 
 #
-
+_max is _A[i];
+#
+_i is _i plus 1;
+#
 show _max;
- 
 End

@@ -171,7 +171,7 @@ class Parser:
             lastIndexAlpha = len(self.alpha) - 1
             lastIndexBeta = len(self.beta) - 1
             tableValue = self.table.get((self.beta[lastIndexBeta],self.alpha[lastIndexAlpha]))
-            print(tableValue)
+            #print(tableValue)
             if (isinstance(tableValue, tuple) and tableValue!= None):
                 #print(tableValue)
                 self.beta.pop()

@@ -1,0 +1,51 @@
+%{
+#include <stdio.h>
+#include <string.h>
+
+%}
+
+%option noyywrap
+%option caseless
+
+DIGIT 		[0-9]
+LETTER      [a-zA-Z]
+NUMBER		[1-9][0-9]*|0$
+CONST		{NUMBER}|{DIGIT}|{LETTER}
+IDEN 		\_[LETTER|DIGIT|\_]*      
+arrayN		\[[NUMBER|,]*\]
+
+%%
+
+is	{printf( "is: %s\n", yytext);}
+plus	{printf( "is: %s\n", yytext);}
+minus	{printf( "is: %s\n", yytext);}
+times	{printf( "is: %s\n", yytext);}
+smaller	{printf( "is: %s\n", yytext);}
+smaller_or_equal	{printf( "is: %s\n", yytext);}
+bigger	{printf( "is: %s\n", yytext);}
+bigger_or_equal	{printf( "is: %s\n", yytext);}
+divide	{printf( "is: %s\n", yytext);}
+equals	{printf( "is: %s\n", yytext);}
+Start	{printf( "is: %s\n", yytext);}
+End	{printf( "is: %s\n", yytext);}
+loop	{printf( "is: %s\n", yytext);}
+if	{printf( "is: %s\n", yytext);}
+show {printf( "is: %s\n", yytext);}
+letter	{printf( "is: %s\n", yytext);}
+for	{printf( "is: %s\n", yytext);}
+{arrayN}	{printf( "is: %s\n", yytext);}
+string	{printf( "is: %s\n", yytext);}
+size {printf( "is: %s\n", yytext);}
+{IDEN} {printf( "iden: %s\n", yytext);}
+{CONST} {printf( "cons: %s\n", yytext);}
+"[" {printf( "is: %s\n", yytext);}
+"]" {printf( "is: %s\n", yytext);}
+"," {printf( "is: %s\n", yytext);}
+"{" {printf( "is: %s\n", yytext);}
+"}" {printf( "is: %s\n", yytext);}
+"#" {printf( "is: %s\n", yytext);}
+"(" {printf( "is: %s\n", yytext);}
+")" {printf( "is: %s\n", yytext);}
+";" {printf( "is: %s\n", yytext);}
+
+%%
